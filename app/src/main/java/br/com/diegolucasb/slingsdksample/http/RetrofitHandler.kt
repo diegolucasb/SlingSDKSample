@@ -13,7 +13,7 @@ import kotlin.reflect.KClass
  * Copyright (c) Stone Co. All rights reserved.
  * lucas.amaral@stone.com.br
  */
-class RetrofitHandler(val baseUrl: String = "") {
+class RetrofitHandler(private val baseUrl: String = "") {
 
     private val retrofit: Retrofit by lazy { buildRetrofit(baseUrl) }
 

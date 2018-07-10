@@ -5,4 +5,6 @@ package br.com.diegolucasb.slingsdksample.http.request
  * Copyright (c) Stone Co. All rights reserved.
  * lucas.amaral@stone.com.br
  */
-abstract class MerchantsServices(val contact: ContactService)
+abstract class MerchantsServices(
+        val contact: ContactService,
+        val address: ContactService)

@@ -1,6 +1,9 @@
 package br.com.diegolucasb.slingsdksample.sdk
 
+import br.com.diegolucasb.slingsdksample.di.Injector
 import br.com.diegolucasb.slingsdksample.http.request.MerchantsServices
+import br.com.diegolucasb.slingsdksample.http.request.MerchantsServicesImpl
+import org.kodein.di.generic.instance
 
 /**
  * Created by diegolucasb on 09/07/18.
@@ -29,8 +32,8 @@ class SlingSDK(
 
         fun build() = SlingSDK(this).apply {
             //injectors
-//            val instance by Injector.getMerchantsGraph("").baseKodein.instance<MerchantsServicesImpl>()
-//            merchant = instance
+            val instance by Injector.getMerchantsGraph("", "").baseKodein.instance<MerchantsServicesImpl>()
+            merchant = instance
         }
     }
 }
