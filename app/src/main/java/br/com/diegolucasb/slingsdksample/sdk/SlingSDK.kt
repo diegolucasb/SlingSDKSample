@@ -42,6 +42,7 @@ class SlingSDK(
         fun build() = SlingSDK(this).apply {
             //injectors
             val instance by Injector.getContactServiceGraph(url, authenticationToken).baseKodein.instance<ContactHandler>()
+            instance.listener = listener
             merchant = MerchantsServicesImpl(contact = instance)
 
         }

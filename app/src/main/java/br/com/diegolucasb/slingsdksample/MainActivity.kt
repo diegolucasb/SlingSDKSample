@@ -18,16 +18,15 @@ class MainActivity : AppCompatActivity() {
             url = "https://customer-api.stone.com.br/v0/"
             authenticationToken = token
             headers = mapOf()
-            listener = object: SlingSDK.RequestListener {
-            override fun success(response: BaseResponse<*>) {
-                1
-            }
+            listener = object: SlingSDK.RequestListener{
+                override fun fail(e: Any?) {
+                }
 
-            override fun fail(e: Any?) {
-                1
-            }
+                override fun success(response: BaseResponse<*>) {
+                    1
+                }
 
-        }
+            }
         }
 
         sdk.merchant.contact.list(stoneCode)

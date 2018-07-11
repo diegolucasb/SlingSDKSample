@@ -25,7 +25,7 @@ class ContactHandler(private val service: ContactService) {
 
             override fun onResponse(call: Call<BaseResponse<List<Contact>>>?, response: Response<BaseResponse<List<Contact>>>?) {
                 response?.let {
-                    if(it.isSuccessful()) {
+                    if(it.isSuccessful) {
                         listener?.success(it.body() as BaseResponse<*>)
                     } else {
                         listener?.fail(it)
