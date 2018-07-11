@@ -1,19 +1,15 @@
 package br.com.diegolucasb.slingsdksample.di
 
-import br.com.diegolucasb.slingsdksample.http.BaseRestHandler
+import br.com.diegolucasb.slingsdksample.http.ContactHandler
 import br.com.diegolucasb.slingsdksample.http.RetrofitHandler
 import br.com.diegolucasb.slingsdksample.http.request.ContactService
 import br.com.diegolucasb.slingsdksample.http.request.MerchantsServices
 import br.com.diegolucasb.slingsdksample.http.request.MerchantsServicesImpl
-import br.com.diegolucasb.slingsdksample.http.response.BaseResponse
-import br.com.diegolucasb.slingsdksample.http.response.Contact
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 import org.kodein.di.generic.singleton
-import stone.com.br.kotlinsdk.repository.RemoteDataSource
-import stone.com.br.kotlinsdk.repository.RemoteDataSourceImpl
 
 /**
  * Created by diegolucasb on 09/07/18.
@@ -33,9 +29,7 @@ object Injector {
     fun getContactServiceGraph(url: String, token: String) = Kodein.lazy {
         import(retrofitModule(url, token))
         bind<ContactService>() with provider { instance<RetrofitHandler>().buildCall(ContactService::class) }
-        bind<RemoteDataSource<BaseRestHandler<BaseResponse<List<Contact>>>>>() with provider {
-            RemoteDataSourceImpl<BaseRestHandler<BaseResponse<List<Contact>>>>( instance())
-        }
+        bind<ContactHandler>() with provider { ContactHandler(instance()) }
     }
 
     fun getMerchantsGraph(url: String, token: String) = Kodein.lazy {

@@ -2,6 +2,7 @@ package br.com.diegolucasb.slingsdksample
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import br.com.diegolucasb.slingsdksample.http.response.BaseResponse
 import br.com.diegolucasb.slingsdksample.sdk.SlingSDK
 
 class MainActivity : AppCompatActivity() {
@@ -11,23 +12,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val stoneCode = 192489630L
-        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUb2tlbkNvZGUiOiI0RDQyN0EzQkZEQTFBMjhDOTEzNDQ4MDIwNkJGQjI2RUM3MkY4QzkwN0FENkJDNzNEQUM2NzNBNjE3OTJCRUUzNDE2MkM4RDAxQUM5NjE3RjEwQjk1NTcxNEI4RjJBNDc5NTI2NzhBMDI0OEYzQUUxNDZFNzYwMThFMkM4N0RBNjA2RjFBMzE2MDQ0RjQxRTE0RTY1Q0U4MTU0RTdBQjBBNjUzOEJBMEVEMUNGOTA5RSIsIlVzZXJJZCI6NDU0MDM5LCJDdXN0b21TdG9uZUNvZGUiOm51bGx9.z583kRaAiGziA30PuFXTfmGNvq2wuEbtKnNq9qoMTpU"
+        val token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJUb2tlbkNvZGUiOiI0RDQyN0EzQkZEQTFBMjhDOTEzNDQ4MDIwNkJGQjI2RUM3MkY4QzkwN0FENkJDNzNEQUM2NzNBNjE3OTJCRUUzMUY1MTQwQzFDOTIxRTc5RUREQUU1NkZCRjgwRjE0NjY2RjkzQThBMTk2RkE1NzUzNDZFNzYwMThFMkM4N0RBNjA2RjFBMzE2MDQ0RjQxRTEwRjRDQkIyOTRERjIxMTE4MzFGMTYwQzZDMDBCRDdGRiIsIlVzZXJJZCI6NDU0MDM5LCJDdXN0b21TdG9uZUNvZGUiOm51bGx9.N1J7P5aVL9htgO3DuogJBqC6uAVfXOw1iDJ5EVY8rWM"
 
         val sdk = SlingSDK.build {
-            url = "https://customer-api.stone.com.br"
+            url = "https://customer-api.stone.com.br/v0/"
             authenticationToken = token
             headers = mapOf()
+            listener = object: SlingSDK.RequestListener {
+            override fun success(response: BaseResponse<*>) {
+                1
+            }
+
+            override fun fail(e: Any?) {
+                1
+            }
+
+        }
         }
 
-//        val list = sdk.merchant.address.list()
-
-//        val contactService by Injector.getContactServiceGraph(
-//                "https://customer-api.stone.com.br/v0/",
-//                token).instance<RemoteDataSourceImpl<BaseRestHandler<BaseResponse<List<Contact>>>>>()
-//        contactService.getData(object : SlingHandler<BaseResponse<List<Contact>>>{
-//
-//        }, mapOf())
-
+        sdk.merchant.contact.list(stoneCode)
 
     }
 }

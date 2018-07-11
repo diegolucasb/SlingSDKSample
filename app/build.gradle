@@ -37,5 +37,5 @@ dependencies {
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
 
     api "org.kodein.di:kodein-di-generic-jvm:$kodein_version"
-//    api "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
+    //    api "org.kodein.di:kodein-di-framework-android-x:$kodein_version"
 }
