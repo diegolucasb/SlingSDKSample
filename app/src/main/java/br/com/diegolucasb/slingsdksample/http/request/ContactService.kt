@@ -14,6 +14,6 @@ import retrofit2.http.Path
 interface ContactService {
 
     @GET("merchants/{affiliationCode}/contacts")
-    fun list(@Path("affiliationCode") affiliationCode: Long): Call<BaseResponse<List<Contact>>>
+    fun list(@Path("affiliationCode") affiliationCode: Long?): Call<BaseResponse<List<Contact>>>
 
 }

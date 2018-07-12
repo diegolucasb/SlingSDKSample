@@ -16,15 +16,14 @@ import org.kodein.di.generic.instance
 class SlingSDK(
         val url: String,
         val authenticationToken: String = "",
-        val headers: Map<String, String>? = null,
-        val listener: RequestListener? = null
-        ) {
+        val affiliationCode: Long? = null,
+        val headers: Map<String, String>? = null) {
 
     private constructor(builder: Builder) : this(
             builder.url,
             builder.authenticationToken,
-            builder.headers,
-            builder.listener)
+            builder.affiliationCode,
+            builder.headers)
 
     companion object {
         inline fun build(block: Builder.() -> Unit) = Builder().apply(block).build()
@@ -36,21 +35,15 @@ class SlingSDK(
     class Builder {
         var url: String = "" //BuildConfig.DEFAULT_URL
         var headers: Map<String, String>? = null
+        var affiliationCode: Long? = null
         var authenticationToken: String = ""
-        var listener: RequestListener? = null
 
         fun build() = SlingSDK(this).apply {
             //injectors
-            val instance by Injector.getContactServiceGraph(url, authenticationToken).baseKodein.instance<ContactHandler>()
-            instance.listener = listener
+            val instance by Injector.getContactServiceGraph(url, authenticationToken, affiliationCode).baseKodein.instance<ContactHandler>()
             merchant = MerchantsServicesImpl(contact = instance)
 
         }
-    }
-
-    interface RequestListener {
-        fun success(response: BaseResponse<*>)
-        fun fail(e: Any?)
     }
 
 }

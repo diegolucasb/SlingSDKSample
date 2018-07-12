@@ -8,4 +8,6 @@ import br.com.diegolucasb.slingsdksample.http.ContactHandler
  * lucas.amaral@stone.com.br
  */
 abstract class MerchantsServices(
-        val contact: ContactHandler)
+        val contact: ContactHandler,
+        val address: ContactHandler,
+        val banking: ContactHandler)

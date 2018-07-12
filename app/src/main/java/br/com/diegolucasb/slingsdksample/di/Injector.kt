@@ -26,10 +26,10 @@ object Injector {
         }
     })
 
-    fun getContactServiceGraph(url: String, token: String) = Kodein.lazy {
+    fun getContactServiceGraph(url: String, token: String, affiliationCode: Long?) = Kodein.lazy {
         import(retrofitModule(url, token))
         bind<ContactService>() with provider { instance<RetrofitHandler>().buildCall(ContactService::class) }
-        bind<ContactHandler>() with provider { ContactHandler(instance()) }
+        bind<ContactHandler>() with provider { ContactHandler(affiliationCode, instance()) }
     }
 
     fun getMerchantsGraph(url: String, token: String) = Kodein.lazy {
