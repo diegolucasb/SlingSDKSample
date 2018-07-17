@@ -1,7 +1,7 @@
 package br.com.diegolucasb.slingsdksample.http.request
 
 import br.com.diegolucasb.slingsdksample.http.response.BaseResponse
-import br.com.diegolucasb.slingsdksample.http.response.Contact
+import br.com.diegolucasb.slingsdksample.model.Contact
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

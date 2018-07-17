@@ -1,4 +1,4 @@
-package br.com.diegolucasb.slingsdksample.http.response
+package br.com.diegolucasb.slingsdksample.model
 
 import java.io.Serializable
 

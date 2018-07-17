@@ -49,5 +49,6 @@ class RetrofitHandler(private val baseUrl: String = "") {
 
     fun <T : Any> buildCall(kClass: KClass<T>): T = retrofit.create(kClass.java)
 
+    companion object : MultitonHolder<RetrofitHandler, String>(::RetrofitHandler)
 
 }

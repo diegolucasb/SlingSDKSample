@@ -1,8 +1,8 @@
 package br.com.diegolucasb.slingsdksample.http
 
-import br.com.diegolucasb.slingsdksample.http.request.ContactService
+import br.com.diegolucasb.slingsdksample.http.request.AddressService
+import br.com.diegolucasb.slingsdksample.model.Address
 import br.com.diegolucasb.slingsdksample.http.response.BaseResponse
-import br.com.diegolucasb.slingsdksample.model.Contact
 import retrofit2.Callback
 
 /**
@@ -10,20 +10,20 @@ import retrofit2.Callback
  * Copyright (c) Stone Co. All rights reserved.
  * lucas.amaral@stone.com.br
  */
-class ContactHandler(
+class AddressHandler(
         private val affiliationCode: Long?,
-        private val service: ContactService): BaseHandler<BaseResponse<List<Contact>>>() {
+        private val service: AddressService): BaseHandler<BaseResponse<List<Address>>>() {
 
-    override var success: ((BaseResponse<List<Contact>>?) -> Unit)? = null
+    override var success: ((BaseResponse<List<Address>>?) -> Unit)? = null
     override var error: ((errorData: Any?) -> Unit)? = null
 
     override fun list(parameters: Map<String, String>,
-                      success: ((BaseResponse<List<Contact>>?) -> Unit)?,
+                      success: ((BaseResponse<List<Address>>?) -> Unit)?,
                       error: ((errorData: Any?) -> Unit)?) {
         this.success = success
         this.error = error
 
-        service.list(affiliationCode).enqueue(this as Callback<BaseResponse<List<Contact>>>)
+        service.listAll(affiliationCode).enqueue(this as Callback<BaseResponse<List<Address>>>)
 
     }
 

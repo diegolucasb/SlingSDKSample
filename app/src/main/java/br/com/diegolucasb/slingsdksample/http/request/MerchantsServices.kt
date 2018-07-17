@@ -1,6 +1,8 @@
 package br.com.diegolucasb.slingsdksample.http.request
 
+import br.com.diegolucasb.slingsdksample.http.AddressHandler
 import br.com.diegolucasb.slingsdksample.http.ContactHandler
+import br.com.diegolucasb.slingsdksample.http.PartnerHandler
 
 /**
  * Created by diegolucasb on 09/07/18.
@@ -9,5 +11,5 @@ import br.com.diegolucasb.slingsdksample.http.ContactHandler
  */
 abstract class MerchantsServices(
         val contact: ContactHandler,
-        val address: ContactHandler,
-        val banking: ContactHandler)
+        val address: AddressHandler,
+        val partner: PartnerHandler)
